@@ -46,8 +46,7 @@ func TCPHandler(conn net.Conn) {
 			return
 		}
 
-		_, err = conn.Write([]byte(data))
-		if err != nil {
+		if _, err = conn.Write([]byte(data)); err != nil {
 			log.Printf("Error while sending data to %s: %s", clientAddr, err)
 			return
 		}
