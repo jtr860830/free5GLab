@@ -10,10 +10,10 @@ import (
 
 func TestTcpFunction(t *testing.T) {
 	// Type Assertion
-	var _ TCPListenFunc = Listen
-	var _ TCPHandleFunc = Handle
+	var l TCPListener = TCPListenFunc(Listen)
+	var h TCPHandler = TCPHandleFunc(Handle)
 
-	go Listen("127.0.0.1", 8080, TCPHandleFunc(Handle))
+	go l.listen("127.0.0.1", 8080, h)
 
 	time.Sleep(5 * time.Second)
 
